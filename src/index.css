@@ -1,13 +1,264 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-size: 20px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.wrapper {
+  margin: auto;
+  padding-top: 40px;
+  width: 1024px;
+}
+.save-buttons {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 30px;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, .2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ------------------------------- BUTTONS  ----------------------- */
+button {
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid transparent;
+  font-size: 16px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: .2;
+}
+
+.transparent-button {
+  color: #5f8deb;
+  background-color: white;
+}
+
+.transparent-button:hover {
+  border: 1px solid #5f8deb;
+  transition: border 0.5s linear;
+}
+
+.blue-button {
+  background-color: #5f8deb;
+  color: white;
+}
+
+.blue-button:hover:enabled {
+  background-color: #2f5ebd;
+  transition: background-color 0.3s linear;
+}
+
+.add-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.add-wrapper h3 {
+  margin: 0;
+}
+
+hr {
+  border-top: 1px solid #dbdbdb ;
+  margin-bottom: 20px;
+}
+
+.trash-button {
+  margin-right: 5px;
+  color: #ed6e69;
+  border: 1px solid #ed6e69;
+  background-color: transparent;
+}
+
+.action-buttons button {
+  background-color: transparent;
+  padding: 6px 6px 2px 6px;
+}
+
+.action-buttons button:hover {
+  background-color: #dbdbdb;
+  transition: background-color .3s linear;
+}
+
+.formula-button {
+  color: #617ee9;
+  border: 1px solid #617ee9;
+}
+
+
+.formula-button img {
+  width: 14px;
+  height: 15px;
+  color: #617ee9;
+}
+
+
+/* ------------------------------- TABLE  ----------------------- */
+table {
+  border-radius: 5px;
+  border: 1px solid #c7cccf;
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 10px;
+  background-color: #e4d8c9;
+  font-weight: normal;
+  border: 1px solid #c7cccf;
+}
+
+th, td {
+  border: 1px solid #c7cccf;
+}
+
+tr td:first-child {
+  text-align: center;
+}
+
+tr td:last-child {
+  text-align: left;
+}
+
+th:first-child {
+  width: 80%;
+}
+
+th:last-child {
+  width: 20%;
+}
+
+td {
+  padding: 20px;
+}
+
+/* ------------------------------- FORMULA  ----------------------- */
+
+.formula-window {
+  width: 80%;
+  height: 80%;
+  background-color: white;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formula-window-header {
+  background-color: #06c47f;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+}
+
+.formula-window-header p {
+  margin-left: 30px;
+}
+
+.formula-window-header svg {
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.formula-constructor {
+  padding-top: 15px;
+  display: flex;
+  flex-direction: row;
+  height: calc(100% - 150px);
+  box-sizing: border-box;
+}
+
+.formula-operators,
+.formula-operands {
+  box-sizing: border-box;
+  width: 10%;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  column-gap: 10px;
+  max-height: 90%;
+  flex-wrap: wrap;
+}
+
+.formula-area {
+  width: 80%;
+  background-color: #f2f2f5;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid transparent;
+}
+
+.formula-area.not-valid {
+  border: 2px solid red;
+}
+.formula-area .formula-item {
+  position: relative;
+}
+
+.formula-item-delete {
+  position: absolute;
+  top: -.6rem;
+  right: -.6rem;
+  cursor: pointer;
+}
+
+.formula-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  column-gap: 10px;
+  row-gap: 10px;
+}
+
+.formula-item {
+  border: 1px solid #617ee9;
+  color: #617ee9;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.formula-item input {
+  width: 32px;
+}
+
+.formula-operators .formula-item ,
+.formula-operands .formula-item {
+  cursor: move;
+}
+
+
+
+.formula_buttons {
+  padding: 20px;
+  display: flex;
+  justify-content: end;
+  column-gap: 15px;
 }
